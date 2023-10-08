@@ -1,7 +1,8 @@
 import express, {Request} from 'express';
 import {uploadPost} from '../controllers/uploadController';
 import multer, {FileFilterCallback} from 'multer';
-import {getCoordinates, makeThumbnail} from '../../middlewares';
+import {makeThumbnail} from "../../middlewares";
+import {OutputUser} from "../../interfaces/User";
 
 const fileFilter = (
   request: Request,
@@ -16,10 +17,10 @@ const fileFilter = (
 };
 const upload = multer({dest: './uploads/', fileFilter});
 const router = express.Router();
-
-// TODO: Add auth middleware
+const uploadProfileImage = multer({dest: './uploads/profiles/', fileFilter});
+let id: OutputUser['id'] = '';
 router
-  .route('/')
-  .post(upload.single('cat'), makeThumbnail, getCoordinates, uploadPost);
+    .route('/profile')
+    .post(uploadProfileImage.single('profile_image' + {id}), makeThumbnail, uploadPost);
 
 export default router;

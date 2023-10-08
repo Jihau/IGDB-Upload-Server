@@ -73,6 +73,28 @@ const getWikiImage = async (
   }
 };
 
+const uploadProfileImage = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        if (!req.file) {
+            throw new CustomError('No file', 400);
+        }
+        const image = await sharp(req.file.path)
+            .resize(200, 200)
+            .toBuffer();
+        req.body.profile_image = image;
+        next();
+    }
+    catch (error) {
+        next(error);
+    }
+};
+
+
+
 const getCoordinates = (req: Request, res: Response, next: NextFunction) => {
   const defaultPoint: Point = {
     type: 'Point',
@@ -146,4 +168,5 @@ export {
   getWikiImage,
   getCoordinates,
   makeThumbnail,
+  uploadProfileImage
 };
