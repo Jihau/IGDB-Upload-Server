@@ -6,6 +6,7 @@ import path from "path";
 import multer from "multer";
 import {GridFSBucket} from "mongodb";
 import mongoose from "mongoose";
+import cors from "cors";
 
 const {ObjectId} = mongoose.Types;
 
@@ -13,6 +14,7 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.listen(process.env.PORT);
+app.use(cors());
 
 const mongoURI = `mongodb+srv://${encodeURIComponent(process.env.MONGO_USER as string)}:${encodeURIComponent(process.env.MONGO_PASS as string)}@${encodeURIComponent(process.env.MONGODB_HOST as string)}/${encodeURIComponent(process.env.MONGODB_DATABASE as string)}?retryWrites=true&w=majority`;
 
@@ -78,4 +80,8 @@ app.delete("/file/:id", (req, res) => {
         if (err) return res.status(404).json({err: err.message});
         res.json({message: "File deleted successfully"});
     });
+});
+
+app.get("/", (req, res) => {
+    res.send("Upload server is running!");
 });
