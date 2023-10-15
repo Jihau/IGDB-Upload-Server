@@ -29,6 +29,9 @@ npm start
 ```
 Server URL [http://localhost:3001](http://localhost:5001)
 
+## Postman Collection
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://speeding-station-907309.postman.co/workspace/Games-Review~dbee9481-2120-48bf-a799-24ff0fff5e02/collection/27659386-eb05ce39-ae05-4859-a933-2965c6c8306b?action=share&creator=27659386)
+
 ## Notes
 
 The images/files are stored in two collections (depending on the bucket name) in your mongodb database.
