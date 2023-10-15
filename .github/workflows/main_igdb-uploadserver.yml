@@ -28,6 +28,7 @@ jobs:
           MONGO_PASS: ${{ secrets.MONGODB_PASS }}
           MONGODB_DATABASE: ${{ secrets.MONGODB_DATABASE }}
           BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+          PORT: ${{ secrets.PORT }}
         run: |
           npm install
           npm run build --if-present
